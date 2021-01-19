@@ -31,53 +31,58 @@ public class demoBancoGC extends BancoGC{
 *   Vamos iniciar o nosso processo de cadastro..                          *
 ***************************************************************************
 """);
-        System.out.println("\nDigite o seu nome:");
-        System.out.print("> ");
-        novaConta.nomeTitular = input.nextLine();
+        do {
+            System.out.println("\nDigite o seu nome:");
+            System.out.print("> ");
+            novaConta.nomeTitular = input.nextLine();
 
-        System.out.println("Digite o valor a depositar:");
-        System.out.print("> ");
-        novaConta.saldo = input.nextFloat();
+            System.out.println("Digite o valor a depositar:");
+            System.out.print("> ");
+            novaConta.saldo = input.nextDouble();
 
-        if(!novaConta.nomeTitular.equals("") && novaConta.saldo!=0.0){
-            System.out.println("\nParabens "+novaConta.nomeTitular+" a sua conta foi criada com sucesso..");
-            System.out.printf("""
-%n
-*********************************************************
-* Para ter acesso aos seus dados use os digitos chaves: *
-* [1] - EXTRATO;                                        *
-* [2] - DEPOSITAR;                                      *
-* [3] - LEVANTAR;                                       *
-* [s] - SAIR;                                           *
-*********************************************************
-""");
-            do {
-                String acesso = input.nextLine();
+            if (novaConta.nomeTitular.equals("") && novaConta.saldo != 0.0) {
+                System.out.println("\nParabens " + novaConta.nomeTitular + " a sua conta foi criada com sucesso..");
+                System.out.printf("""
+                        %n
+                        *********************************************************
+                        * Para ter acesso aos seus dados use os digitos chaves: *
+                        * [1] - EXTRATO;                                        *
+                        * [2] - DEPOSITAR;                                      *
+                        * [3] - LEVANTAR;                                       *
+                        * [s] - SAIR;                                           *
+                        *********************************************************
+                        """);
+                do {
+                    String acesso = input.nextLine();
 
-                if (acesso.equals("1")) {
-                    novaConta.extrato();
-                }
-                if (acesso.equals("2")) {
-                    System.out.println("\nDigite o valor a depositar: ");
+                    if (acesso.equals("1")) {
+                        novaConta.extrato();
+                    }
+                    if (acesso.equals("2")) {
+                        System.out.println("\nDigite o valor a depositar: ");
+                        System.out.print("> ");
+                        double deposito = input.nextDouble();
+                        novaConta.depositar(deposito);
+                        continue;
+                    }
+                    if (acesso.equals("3")) {
+                        System.out.println("\nDigite o valor a levantar: ");
+                        System.out.print("> ");
+                        double levantamento = input.nextDouble();
+                        novaConta.levantar(levantamento);
+                        continue;
+                    }
+                    if (acesso.equals("s")) {
+                        System.out.println("\nObrigado pela preferencia..\nTerminando o programa!");
+                        System.exit(0);
+                    }
+                    System.out.println("\n*** [1]-[2]-[3]-[s] ***");
                     System.out.print("> ");
-                    float deposito = input.nextFloat();
-                    novaConta.depositar(deposito);
-                    continue;
-                }
-                if (acesso.equals("3")) {
-                    System.out.println("\nDigite o valor a levantar: ");
-                    System.out.print("> ");
-                    float levantamento = input.nextFloat();
-                    novaConta.levantar(levantamento);
-                    continue;
-                }
-                if (acesso.equals("s")){
-                    System.out.println("\nObrigado pela preferencia..\nTerminando o programa!");
-                    System.exit(0);
-                }
-                System.out.println("\n*** [1]-[2]-[3]-[s] ***");
-                System.out.print("> ");
-            } while (true);
-        }
+                } while (true);
+            }
+            else {
+                System.out.print("[!] Por Favor Introduza dados validos..\nNome: Antonio Fulano\nValor a depositar: maior 0");
+            }
+        } while (false);
     }
 }
