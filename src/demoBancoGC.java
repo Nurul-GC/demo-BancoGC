@@ -41,17 +41,27 @@ public class demoBancoGC extends BancoGC{
             novaConta.saldo = input.nextDouble();
 
             if ((novaConta.nomeTitular.isEmpty() | novaConta.nomeTitular.isBlank()) | (novaConta.saldo < 1)) {
-                System.out.print("\n[!] Por Favor Introduza dados validos..\nEXEMPLO\nNome: Antonio Fulano\nValor a depositar: maior 0\n");
+                System.out.printf("""
+%n
+*******************************************
+* [!] Por Favor Introduza dados validos.. *
+*                                         *
+* EXEMPLO                                 *
+* Nome: Primeiro (e/ou) Ultimo            *
+* Valor a depositar: maior de 0           *
+*******************************************
+""");
             }
             else {
                 System.out.println("\nParabens " + novaConta.nomeTitular + " a sua conta foi criada com sucesso..");
-                System.out.print("""
-                        *********************************************************
-                        * Para ter acesso aos seus dados use os digitos chaves: *
-                        *      [1] - EXTRATO;        [3] - LEVANTAR;            *
-                        *      [2] - DEPOSITAR;      [s] - SAIR;                *
-                        *********************************************************
-                        """);
+                System.out.printf("""
+%n
+*********************************************************
+* Para ter acesso aos seus dados use os digitos chaves: *
+*      [1] - EXTRATO;        [3] - LEVANTAR;            *
+*      [2] - DEPOSITAR;      [s] - SAIR;                *
+*********************************************************
+""");
                 do {
                     String acesso = input.nextLine();
 
@@ -80,7 +90,6 @@ public class demoBancoGC extends BancoGC{
                     System.out.print("> ");
                 } while (true);
             }
-        }
-        while (true);
+        } while (true);
     }
 }
